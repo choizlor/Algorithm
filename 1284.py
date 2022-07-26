@@ -4,7 +4,7 @@ for num in range(1, T + 1):
     a_price = p * w
     b_price = q
     if w > r:
-        b_price = q + (w - r) * s
+        b_price += (w - r) * s
     if a_price < b_price:
         result = a_price
     else:

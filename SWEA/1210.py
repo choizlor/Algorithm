@@ -1,34 +1,29 @@
-board = [list(map(int, input().split())) for _ in range(10)]
-for i in range(10):
-    board[i].append(0)
+for _ in range(10):
+    n = int(input())
+    board = [list(map(int, input().split())) for _ in range(100)]
 
-dy = [0, 0, -1]
-dx = [-1, 1, 0]
+    # 왼, 오, 위
+    dr = [0, 0, -1]
+    dc = [-1, 1, 0]
 
-for j in range(10):
-    if board[-1][j] == 2:
-        nx = j
+    curC = -1
+    curR = 99
+    for i in range(100):
+        if board[-1][i] == 2:
+            curC = i
 
-for ny in range(9, -1, -1):
-    if board[ny][nx - 1] == 0 and board[ny][nx + 1] == 0:
-        continue
-    else:
-        if board[ny][nx - 1] == 1:
-            while board[ny][nx] > 0:
-                nx -= 1
-        elif board[ny][nx + 1] == 1:
-            while board[ny][nx] > 0:
-                nx += 1
+    while curR >= 0:
+        if curR == 0:
+            break
 
-print(nx)
+        for d in range(3):
+            newR = curR + dr[d]
+            newC = curC + dc[d]
 
-# 1 0 0 0 1 0 1 0 0 1
-# 1 0 0 0 1 0 1 1 1 1
-# 1 0 0 0 1 0 1 0 0 1
-# 1 0 0 0 1 1 1 0 0 1
-# 1 0 0 0 1 0 1 0 0 1
-# 1 1 1 1 1 0 1 1 1 1
-# 1 0 0 0 1 0 1 0 0 1
-# 1 1 1 1 1 0 1 0 0 1
-# 1 0 0 0 1 1 1 0 0 1
-# 1 0 0 0 1 0 1 0 0 2
+            if 100 > newR >= 0 and 100 > newC >= 0 and board[newR][newC] == 1:
+                board[newR][newC] = -1
+                curC = newC
+                curR = newR
+                break
+
+    print(f'#{n} {curC}')

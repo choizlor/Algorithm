@@ -22,7 +22,6 @@ for _ in range(tc):
 
     x, y = map(int, input().split())
     x1, y1 = map(int, input().split())
-    chess_board[x][y] = 1
     chess_board[x1][y1] = 1000
 
     bfs(x, y)

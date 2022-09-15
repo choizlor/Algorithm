@@ -1,14 +1,33 @@
+# import sys
+# input = sys.stdin.readline
+
 from collections import deque
 
 def bfs(s):
     dq = deque()
     dq.append(s)
+    visited[s] = 1
     while dq:
-        sumV = 0
         m = dq.popleft()
-        while 1 <= sumV <= F:
-            sumV = m + U
+        for dm in [U, -D]:
+            nm = m + dm
+            if 1 <= nm <= F and visited[nm] == 0:
+                visited[nm] = 1
+                count[nm] = count[m] + 1
+                if nm == G:
+                    return
+                dq.append(nm)
 
-# 최단거리처럼 풀면 될듯.
+
 F, S, G, U, D = map(int, input().split())
-bfs(S)
+visited = [0] * (F+1)
+count = [0] * (F+1)
+
+if S == G:
+    print(0)
+else:
+    bfs(S)
+    if count[G]:
+        print(count[G])
+    else:
+        print('use the stairs')

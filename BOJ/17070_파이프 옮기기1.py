@@ -57,7 +57,7 @@
 #             if 0 <= x + 2 < N and 0 <= y + 1 < N and arr[x + 2][y + 1] == 0:
 #                 arr[x + 2][y + 1] = 1
 #                 pipe.append([x + 2, y + 1])
-
+#
 def dfs(x, y, direction):
     global cnt
     if x == N - 1 and y == N - 1:
@@ -85,6 +85,7 @@ def dfs(x, y, direction):
         if x + 1 < N and y + 1 < N:
             if s[x][y+1] == 0 and s[x+1][y+1] == 0 and s[x+1][y] == 0:
                 dfs(x+1, y+1, 2)
+
 
 
 N = int(input())

@@ -1,5 +1,5 @@
-# import sys
-# sys.stdin = open("sample_input (8).txt", "r")
+import sys
+sys.stdin = open("sample_input (8).txt", "r")
 
 def code(a):    # 암호문 해독
     a = str(a)
@@ -45,6 +45,8 @@ for tc in range(1, T+1):
 
     res = 0
     for row in range(1, N):
+        if h_lst[row] == '0' * M:
+            continue
         j = M * 4 - 1   # 오른쪽 끝자리 idx
         while j >= 56:
             co = [0] * 8    # 암호문 8자리 초기화 list

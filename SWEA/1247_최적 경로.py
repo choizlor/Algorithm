@@ -1,16 +1,16 @@
-def dfs(idx, lastx, lasty, d):
+def dfs(k, x, y, d):
     global minV
     if minV < d:
         return
-    if idx == n:
-        d += abs(lastx - home[0]) + abs(lasty - home[1])
+    if k == n:
+        d += abs(x - home[0]) + abs(y - home[1])
         minV = min(d, minV)
         return
     for i in range(n):
         if not visited[i]:
             visited[i] = 1
-            temp = d + abs(lastx - client[i][0]) + abs(lasty - client[i][1])
-            dfs(idx+1, client[i][0], client[i][1], temp)
+            temp = d + abs(x - client[i][0]) + abs(y - client[i][1])
+            dfs(k+1, client[i][0], client[i][1], temp)
             visited[i] = 0
 
 

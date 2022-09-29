@@ -10,12 +10,10 @@ def union(x, y):
 T = int(input())
 for tc in range(1, T+1):
     N, M = map(int, input().split())
-    lst = list(map(int, input().split()))
-
     parent = [i for i in range(N+1)]
 
-    for i in range(M):
-        n1, n2 = lst[i*2], lst[i*2+1]
+    for _ in range(M):
+        n1, n2 = map(int, input().split())
         union(n1, n2)
 
     res = 0

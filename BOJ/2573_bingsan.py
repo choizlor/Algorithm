@@ -14,6 +14,16 @@ def bfs(x,y):
 
 
 def melt_f():
+    melt = [[0] * M for _ in range(N)]
+    for x in range(N):
+        for y in range(M):
+            if ice[x][y] == 0:
+                for dx, dy in [[1, 0], [0, 1], [-1, 0], [0, -1]]:
+                    nx, ny = x + dx, y + dy
+                    if 0 <= nx < N and 0 <= ny < M:
+                        if ice[nx][ny]:
+                            melt[nx][ny] += 1
+
     for x in range(N):
         for y in range(M):
             ice[x][y] -= melt[x][y]
@@ -26,15 +36,6 @@ ice = [list(map(int, input().split())) for _ in range(N)]
 time = 0
 
 while True:
-    melt = [[0]*M for _ in range(N)]
-    for x in range(N):
-        for y in range(M):
-            if ice[x][y] == 0:
-                for dx, dy in [[1,0],[0,1],[-1,0],[0,-1]]:
-                    nx, ny = x + dx, y + dy
-                    if 0<=nx<N and 0<=ny<M:
-                        if ice[nx][ny]:
-                            melt[nx][ny] += 1
     melt_f()
 
     cnt = 0

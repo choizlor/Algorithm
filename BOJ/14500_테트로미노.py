@@ -1,6 +1,9 @@
 def dfs(x, y, d, sumV):
     global maxV
 
+    if maxV > sumV + (4-d) * check:
+        return
+
     if d == 4:
         if maxV < sumV:
             maxV = sumV
@@ -18,6 +21,11 @@ def dfs(x, y, d, sumV):
 
 N, M = map(int, input().split())
 num = [list(map(int, input().split())) for _ in range(N)]
+check = 0
+
+for lst in num:
+    check = max(max(lst), check)
+
 visited = [[0] * M for _ in range(N)]
 maxV = 0
 

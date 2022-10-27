@@ -1,24 +1,25 @@
-def f(i, k):
-    if i == k:
-        lst = p[:]
-        if lst not in result:
-            check = 0
-            for j in range(k//2):
-                if p[j] == p[k-1-j]:
-                    check += 1
-            if check == k//2:
-                result.append(lst)
-    else:
-        for j in range(i, k):
-            p[i], p[j] = p[j], p[i]
-            f(i+1, k)
-            p[i], p[j] = p[j], p[i]
-
-
 p = sorted(list(input()))
-result = []
-f(0, len(p))
-if result:
-    print(''.join(result[0]))
-else:
+odd = []
+even = []
+result = ['' for _ in range(len(p))]
+for i in range(0, len(p), 2):
+    odd.append(p[i])
+for i in range(1, len(p), 2):
+    even.append(p[i])
+
+for i in range(len(even)):
+    for j in range(len(odd)):
+        if even[i] == odd[j]:
+            result[i] = even[i]
+            result[len(p)-1-i] = odd[j]
+            odd[j] = 0
+            break
+
+for i in odd:
+    if i != 0:
+        result[len(p)//2] = i
+
+if '' in result:
     print("I'm Sorry Hansoo")
+else:
+    print(''.join(result))

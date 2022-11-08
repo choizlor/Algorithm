@@ -9,4 +9,4 @@ for i in range(N):
     a_lst.pop(a_lst.index(min(a_lst)))
     b_lst.pop(b_lst.index(max(b_lst)))
 
-print(sumV)
+print(sumV)g

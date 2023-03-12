@@ -1,7 +1,7 @@
 function solution(n) {
-    let oneNum = n.toString(2).split("1").length;
-    while (true) {
-      n++;
-      if (n.toString(2).split("1").length === oneNum) return n;
-    }
+  var num = n.toString(2).split("1").length;
+  while (true) {
+    n++;
+    if (n.toString(2).split("1").length === num) return n;
   }
+}

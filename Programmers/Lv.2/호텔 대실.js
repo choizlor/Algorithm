@@ -4,18 +4,18 @@ const changeTime = (time) => {
 };
 
 function solution(book_time) {
-  let time = [];
+  let answer = [];
 
   book_time.sort().forEach((time) => {
     const start = changeTime(time[0]);
     const end = changeTime(time[1]) + 10;
 
-    if (time.length === 0) {
-      time.push(end);
+    if (answer.length === 0) {
+      answer.push(end);
     } else {
-      time.sort();
+      answer.sort();
       let check = true;
-      for (let i = 0; i < time.length; i++) {
+      for (let i = 0; i < answer.length; i++) {
         if (start >= answer[i]) {
           answer[i] = end;
           check = false;
@@ -25,7 +25,7 @@ function solution(book_time) {
       if (check) answer.push(end);
     }
   });
-  return time.length;
+  return answer.length;
 }
 
 solution([

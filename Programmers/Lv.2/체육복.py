@@ -1,11 +1,24 @@
 def solution(n, lost, reserve):
-    _reserve = [r for r in reserve if r not in lost]
-    _lost = [l for l in lost if l not in reserve]
-    for r in _reserve:
-        f = r - 1
-        b = r + 1
-        if f in _lost:
-            _lost.remove(f)
-        elif b in _lost:
-            _lost.remove(b)
-    return n - len(_lost)
+    dp = [1] * (n + 2)
+
+    for i in lost:
+        dp[i] -= 1
+
+    for i in reserve:
+        dp[i] += 1
+
+    answer = 0
+    for i in range(1, n + 1):
+        if dp[i] >= 1:
+            answer += 1
+        else:
+            if dp[i-1] == 2:
+                dp[i-1] -= 1
+                answer += 1
+                dp[i] += 1
+            elif dp[i+1] == 2:
+                dp[i+1] -= 1
+                answer += 1
+                dp[i] += 1
+    
+    return answer

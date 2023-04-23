@@ -3,7 +3,6 @@ from collections import deque
 def solution(prices):
     queue = deque(prices)
     answer = []
-    
     while queue:
         price = queue.popleft()
         sec = 0
@@ -13,3 +12,5 @@ def solution(prices):
                 break 
         answer.append(sec)        
     return answer
+
+# 그냥 queue로 풀면 시간초과

@@ -1,4 +1,5 @@
-import heapq;
+import heapq
+
 
 def solution(scoville, K):
     heap = []
@@ -14,5 +15,6 @@ def solution(scoville, K):
             return -1
 
     return answer
+
 
 solution([1, 2, 3, 9, 10, 12], 7)

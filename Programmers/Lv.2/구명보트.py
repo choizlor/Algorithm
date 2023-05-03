@@ -9,4 +9,3 @@ def solution(people, limit):
             a += 1
         b -= 1
     return len(lst) - answer
-

@@ -3,4 +3,5 @@ def solution(numbers):
     numbers.sort(key=lambda x: x * 3, reverse=True)
     return str(int(''.join(numbers)))
 
+
 solution([6, 10, 2])

@@ -20,5 +20,5 @@ def solution(n, lost, reserve):
                 dp[i+1] -= 1
                 answer += 1
                 dp[i] += 1
-    
+
     return answer

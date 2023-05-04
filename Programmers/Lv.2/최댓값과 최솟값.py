@@ -8,5 +8,5 @@ def solution(s):
 
     minN = min(numbers)
     maxN = max(numbers)
-    
+
     return f'{minN} {maxN}'

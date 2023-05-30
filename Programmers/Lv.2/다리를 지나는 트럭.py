@@ -1,12 +1,24 @@
+from collections import deque
+
 def solution(bridge_length, weight, truck_weights):
     answer = 0
-    trucks_on_bridge = [0] * bridge_length
-    while len(trucks_on_bridge):
+    bridgeWeight = 0
+    bridge_on_trucks = deque([0] * bridge_length)
+    waiting = deque(truck_weights)
+
+    while len(waiting) or bridgeWeight > 0:
+        b = bridge_on_trucks.popleft()
+        bridgeWeight -= b
+
+        if len(waiting) and bridgeWeight + waiting[0] <= weight:
+            a = waiting.popleft()
+            bridgeWeight += a
+            bridge_on_trucks.append(a)
+        else:
+            bridge_on_trucks.append(0)
+        
         answer += 1
-        trucks_on_bridge.pop(0)
-        if truck_weights:
-            if sum(trucks_on_bridge) + truck_weights[0] <= weight:
-                trucks_on_bridge.append(truck_weights.pop(0))
-            else:
-                trucks_on_bridge.append(0)
+
     return answer
+
+# sum 시간복잡도 O(n)

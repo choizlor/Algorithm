@@ -5,7 +5,7 @@ dy = [0, 0, 1, -1]
 
 
 def bfs(start, end, maps):
-    V = [[0 for _ in range(len(maps))] for _ in range(len(maps))]
+    V = [[0] * len(maps[0]) for _ in range(len(maps))]
     n = len(maps)
     m = len(maps[0])
     q = deque()
@@ -14,25 +14,25 @@ def bfs(start, end, maps):
     for i in range(n):
         for j in range(m):
             if maps[i][j] == start:
-                q.append((i, j, 0))
+                q.append((i, j))
                 V[i][j] = 1
                 check = True
                 break
         if check: break
 
     while q:
-        x, y, dist = q.popleft()
+        x, y = q.popleft()
 
         if maps[x][y] == end:
-            return dist
+            return V[x][y] - 1
 
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if 0 <= nx < len(V) and 0 <= ny < len(V) and not V[nx][ny] and maps[nx][ny] != 'X':
+            if 0 <= nx < len(maps) and 0 <= ny < len(maps[0]) and not V[nx][ny] and maps[nx][ny] != 'X':
                 V[nx][ny] = V[x][y] + 1
-                q.append((nx, ny, dist + 1))
+                q.append((nx, ny))
 
     return -1
 
@@ -47,5 +47,5 @@ def solution(maps):
         return -1
 
 
-solution(["SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"])
+print(solution(["SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"]))
 solution(["LOOXS", "OOOOX", "OOOOO", "OOOOO", "EOOOO"])

@@ -1,6 +1,6 @@
 def solution(data, col, row_begin, row_end):
     answer = 0
-    print(data[col-1])
+    # col-1번째 값으로 오름차순, 동일할 시 첫 번째 컬럼의 값을 기준으로 내림차순
     data = sorted(data, key=lambda x: [x[col - 1], -x[0]])
 
     for i in range(row_begin, row_end + 1):
